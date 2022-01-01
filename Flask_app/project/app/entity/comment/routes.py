@@ -4,10 +4,7 @@ import requests
 import json
 from app.entity.clefs.utils import send_email
 from app.models import comment
-
-
-
-
+from flask_cors import CORS,cross_origin
 
 
 
@@ -47,12 +44,19 @@ def commen_spe(ide):
     all_.append(json)
     return jsonify({"comment": commen}), 200
 
+@cross_origin(origin=['http://127.0.0.1',"http://195.15.218.172"],headers=['Content- Type','Authorization'])
+@omment.route('/<int:ide>/delete/comment/', methods=['DELETE'])
+def commen_spe(ide):
+    comment=comment.query.filter_by(id=ide).delete()
+    db.session.commit()
+    return jsonify({"status": "comment deleted"}), 200
+
 @omment.route('/make/comment/', methods=['POST'])
 def commen_make():
     user=request.json['user']
     
     check=requests.get("http://195.15.218.172/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
-    print(check)
+    
     try:
         if check.json()['id']:
             rdv=request.json['rdv']
@@ -64,4 +68,3 @@ def commen_make():
         return jsonify({"status": "comment sent"}), 200
     except:
         return jsonify({"Fail": "donnee n'exist pas or token n'existe pas"}), 400
-
