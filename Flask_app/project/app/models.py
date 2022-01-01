@@ -31,6 +31,7 @@ class document(db.Model):
     rdv_id=db.Column(db.Integer)
     Type=db.Column(db.String)
     route=db.Column(db.String)
+    comment=db.Column(db.String)
     date = db.Column(db.DateTime(),default=datetime.utcnow)
     
 
