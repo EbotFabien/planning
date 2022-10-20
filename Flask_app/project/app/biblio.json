@@ -170,3 +170,32 @@
     "updated_at": null
   }
 ]
+
+[
+  {
+    "nom_bailleur": "string",
+    "prenom_bailleur": "string",
+    "email_bailleur": "string",
+    "reference_bailleur": "string",
+    "nom_locataire": "string",
+    "prenom_locataire": true,
+    "email_locataire": "string",
+    "telephone_locataire": "string",
+    "surface_propriete": "string",
+    "numero_propriete": "string",
+    "numero_parking_propriete": "string",
+    "adresse_propriete": "string",
+    "code_postal_propriete": "string",
+    "ville_propriete": "string",
+    "adresse_complementaire_propriete": "string",
+    "numero_cave_propriete": "string",
+    "ref_lot": "string",
+    "ref_edl": "string",
+    "type": "string",
+    "longitude": "string",
+    "latitude": "string",
+    "consignes_part": "string",
+    "list_documents": "string",
+    "info_diverses": "string"
+  }
+]

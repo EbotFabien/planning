@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from flask_bcrypt import Bcrypt
 from flask_login import  LoginManager
-#from flask_mail import Mail
+from flask_mail import Mail
 from app.config import Config
 import os
 from firebase_admin import credentials, firestore, initialize_app
@@ -15,7 +15,7 @@ from firebase_admin import credentials, firestore, initialize_app
 
 
 bcrypt = Bcrypt()
-
+mail = Mail()
 
 
 def create_app(config_class=Config):
@@ -24,6 +24,7 @@ def create_app(config_class=Config):
 
    
     bcrypt.init_app(app)
+    mail.init_app(app)
    
 
     from app.entity.clefs.routes import clefs
