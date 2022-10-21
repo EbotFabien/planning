@@ -1,171 +1,196 @@
 [
   {
-    "id": 8036,
+    "id": 28056,
     "propriete": {
-      "id": 23781,
-      "surface": "200",
-      "numero": "1",
-      "numeroParking": "1",
-      "adresse": "string",
-      "codePostal": "45657",
-      "ville": "string",
-      "adresseComplementaire": "string",
-      "numeroCave": "1",
-      "type": "F6 meuble",
-      "numeroSol": "1",
+      "id": 54882,
+      "surface": "2",
+      "numero": "009",
+      "numeroParking": "Y7",
+      "adresse": "Palais de la culture",
+      "codePostal": "90888",
+      "ancien_locataire": "John Marshall Smith1",
+      "date_sortie_ancien_locataire": null,
+      "ville": "Lyon",
+      "adresseComplementaire": "RAS",
+      "numeroCave": "C09",
+      "type": "F2 meuble",
+      "numeroSol": "2",
       "bailleur": {
-        "nom": "Michel",
-        "prenom": "Foka",
-        "email": "michel@gmail.com",
-        "reference": ""
+        "nom": "Camillio",
+        "prenom": "Evelyne ",
+        "email": "adamsmith56@gmail.com",
+        "reference": "8163T"
       },
       "locataire": {
-        "nom": "Michel",
-        "prenom": "Michel",
-        "email": "tagnefabrice@gmail.com",
-        "telephone": "1234567890"
+        "nom": "Locataire nom",
+        "prenom": "man",
+        "email": "locataire.mail12@gmail.com",
+        "telephone": "0992882727"
+      },
+      "type_propriete": {
+        "type": "Parties communes",
+        "statut": 1,
+        "id": 6
       }
     },
     "intervention": {
-      "type": "Constat entrant",
+      "type": "Visite conseil",
       "statut": 1,
       "created_at": "2019-04-01T14:07:41Z",
-      "id": 1
+      "id": 7
     },
-    "ref_lot": "string2",
-    "ref_rdv_edl": "string",
+    "ref_lot": "TEST",
+    "ref_rdv_edl": "09",
     "client": {
-      "id": 1,
+      "id": 466,
       "user": {
-        "nom": "DUART",
-        "prenom": "DAVID",
-        "email": "gestiongerance@cabinetgcardinal.com",
-        "login": "AM5431",
-        "id": 11,
-        "group": "Client pro"
+        "nom": "Adama pro",
+        "prenom": "Client pro Adam",
+        "email": "adamapro@gmail.com",
+        "login": "clientadam",
+        "id": 680,
+        "group": "Client pro",
+        "is_active": true
       },
-      "ref_comptable": {
-        "nom": "DUART DAVID",
-        "mobile": "650894722.0",
-        "email_envoi_facture": "d.duart@o-real.fr",
-        "telephone": "145301240.0",
-        "id": 468
-      },
-      "ref_service_gestion": {
-        "nom_complet": "DUART DAVID",
-        "mobile": "650894722.0",
-        "email": "gestiongerance@cabinetgcardinal.com",
-        "telephone": "145301240.0",
-        "id": 468
-      },
+      "ref_comptable": null,
+      "ref_service_gestion": null,
       "info_concession": {
-        "agence_secteur_rattachement": "SECTEUR ILE DE FRANCE",
-        "nom_concessionnaire": "AMEXPERT FRANCE",
+        "agence_secteur_rattachement": null,
+        "nom_concessionnaire": null,
         "numero_proposition_prestation": null,
         "nom_complet": null,
-        "as_client": "AMF",
+        "as_client": null,
         "origine_client": null,
         "suivie_technique_client": null,
         "agent_rattache": {
-          "nom": "MAFAT",
-          "prenom": "CEDRIC",
-          "email": "mafat2753@amexpert.biz",
-          "trigramme": "CMF",
-          "id": 13
+          "nom": "Smith",
+          "prenom": "Adam",
+          "email": "adamsmith@gmail.com",
+          "trigramme": "SAD",
+          "id": 100,
+          "secteur": null,
+          "secteur_secondaire": null
         }
       },
       "statut": null,
       "type": "professionnel",
-      "adresse": "62 RUE DE VOUILLE",
-      "titre": "Mademoiselle",
-      "fonction": "RESPONSABLE GESTION",
-      "societe": "CABINET G.CARDINAL",
-      "ref_societe": "CABINET G.CARDINAL",
-      "email_agence": "gestiongerance@cabinetgcardinal.com",
-      "siret": "79501577500013.0",
-      "tva_intercommunautaire": "FR85795015775",
+      "adresse": "Paris",
+      "titre": "Mr",
+      "fonction": "Vide",
+      "societe": "Vide",
+      "ref_societe": null,
+      "email_agence": null,
+      "siret": null,
+      "tva_intercommunautaire": null,
       "complement_adresse": null,
-      "code_postal": "75015.0",
-      "ville": "PARIS",
-      "telephone": "145301240.0",
-      "mobile": "650894722.0",
-      "telephone_agence": "145301240.0",
-      "code_client": "123360.0",
-      "created_at": "2018-06-22T09:01:49Z",
-      "updated_at": "2019-07-16T11:20:40Z",
-      "passeur": []
+      "code_postal": null,
+      "ville": "Vide",
+      "telephone": "0998287272",
+      "mobile": null,
+      "telephone_agence": null,
+      "code_client": "YXcOfFospoGncKH",
+      "created_at": null,
+      "updated_at": null,
+      "passeur": [
+        {
+          "id": 214,
+          "user": {
+            "nom": "Moha",
+            "prenom": "Sala",
+            "email": "salamoha@kmail.com/1/1",
+            "login": "sal1",
+            "id": 681,
+            "is_active": true,
+            "group": "Salarie"
+          },
+          "agent_rattache": null,
+          "client": {
+            "nom": "Adama pro",
+            "prenom": "Client pro Adam",
+            "email": "adamapro@gmail.com",
+            "type": "Client pro",
+            "id": 466,
+            "societe": "Vide"
+          },
+          "adresse": "Paris",
+          "titre": "M",
+          "fonction": "Procureur",
+          "company": null,
+          "code": "002",
+          "telephone": "0928726245",
+          "mobile": "0029929287",
+          "created_at": null,
+          "updated_at": "2022-10-19T21:59:58.410931Z"
+        }
+      ]
     },
-    "date": "2022-02-21T23:00:00Z",
-    "passeur": {
-      "id": 1,
-      "user": {
-        "nom": "AGENT TEST 1",
-        "prenom": "XAVIER",
-        "email": "xavierdetoc@gmail.com",
-        "login": "AMI0186",
-        "id": 186,
-        "group": "Salarie"
-      },
-      "agent_rattache": {
+    "date": "2022-10-26T00:00:00Z",
+    "passeur": [
+      {
+        "id": 214,
         "user": {
-          "nom": "AMEXPERT",
-          "prenom": "FRANCE",
-          "email": "franceggle@amexpert.biz",
-          "login": "AMI0260",
-          "id": 260
+          "nom": "Moha",
+          "prenom": "Sala",
+          "email": "salamoha@kmail.com/1/1",
+          "login": "sal1",
+          "id": 681,
+          "is_active": true,
+          "group": "Salarie"
         },
-        "trigramme": "AMF",
-        "id": 47
-      },
-      "client": {
-        "nom": "FALL",
-        "prenom": "BARBARA",
-        "email": "b.fall@de-valiere.com",
-        "type": "Client pro",
-        "id": 177
-      },
-      "adresse": null,
-      "titre": "Monsieur",
-      "fonction": "GESTIONNAIRE",
-      "company": "AGENCE EDELE SOLUTION",
-      "code": null,
-      "telephone": "102030405.0",
-      "mobile": "102030405.0",
-      "created_at": "2019-04-01T22:17:48Z",
-      "updated_at": "2019-04-27T16:10:15Z"
-    },
+        "agent_rattache": null,
+        "client": {
+          "nom": "Adama pro",
+          "prenom": "Client pro Adam",
+          "email": "adamapro@gmail.com",
+          "type": "Client pro",
+          "id": 466,
+          "societe": "Vide"
+        },
+        "adresse": "Paris",
+        "titre": "M",
+        "fonction": "Procureur",
+        "company": null,
+        "code": "002",
+        "telephone": "0928726245",
+        "mobile": "0029929287",
+        "created_at": null,
+        "updated_at": "2022-10-19T21:59:58.410931Z"
+      }
+    ],
     "agent": {
-      "id": 92,
+      "id": 100,
       "user": {
-        "nom": "string",
-        "prenom": "string",
-        "email": "brunoowona12@gmail.com",
-        "login": "stringb",
-        "id": 652,
-        "group": "Agent secteur"
+        "nom": "Smith",
+        "prenom": "Adam",
+        "email": "adamsmith@gmail.com",
+        "login": "adam",
+        "id": 677,
+        "is_active": true,
+        "group": "Agent constat"
       },
-      "adresse": "string12",
-      "trigramme": "string",
-      "created_at": "2022-09-27T10:27:26.547949Z",
-      "updated_at": "2022-10-11T17:47:25.101772Z",
+      "adresse": "56",
+      "trigramme": "SAD",
+      "telephone": "0998872654",
+      "created_at": "2022-10-19T14:49:45.903105Z",
+      "updated_at": "2022-10-19T21:40:31.350692Z",
       "secteur_primaire": null,
       "secteur_secondaire": null,
-      "agent_secteur": null
+      "agent_secteur": 99
     },
-    "longitude": "238.43",
-    "latitude": "238.43",
-    "liste_document_recuperer": "string",
-    "consignes_particuliere": "string",
-    "info_diverses": "string",
-    "statut": "Realise",
-    "couleur": "purple",
+    "longitude": null,
+    "latitude": null,
+    "liste_document_recuperer": "RAS",
+    "consignes_particuliere": "RAS",
+    "info_diverses": "RAS",
+    "statut": "Attente prise en charge",
+    "couleur": "red",
     "ancien_client_id": null,
     "ancien_agent_trigramme": null,
     "agent_constat": null,
-    "audit_planneur": null,
     "numero": null,
     "ref_commande": null,
     "last_update_by": null,
+    "audit_planneur": null,
     "created_at": null,
     "updated_at": null
   }
@@ -197,5 +222,29 @@
     "consignes_part": "string",
     "list_documents": "string",
     "info_diverses": "string"
+  }
+]
+
+
+[
+  {
+    "id": 2,
+    "user": {
+      "nom": "DRH",
+      "prenom": "Amexpert",
+      "email": "drh@amexpert.biz",
+      "login": "AM02ADMIN",
+      "id": 4,
+      "is_active": true,
+      "group": "Audit planneur"
+    },
+    "adresse": null,
+    "trigramme": "DRH",
+    "telephone": null,
+    "created_at": "2019-04-01T14:08:32Z",
+    "updated_at": "2019-04-01T14:08:32Z",
+    "secteur_primaire": null,
+    "secteur_secondaire": null,
+    "agent_secteur": null
   }
 ]

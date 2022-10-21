@@ -1,6 +1,6 @@
 class Config:
     SECRET_KEY='FABIENCLASSIC'
-    #SQLALCHEMY_DATABASE_URI = 'sqlite:///fabienflask.db'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///cmd.db'
     MAIL_SERVER ='mail.infomaniak.ch'
     MAIL_PORT = 587
     MAIL_USE_TLS =True
