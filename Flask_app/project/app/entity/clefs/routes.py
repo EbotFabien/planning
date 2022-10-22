@@ -15,7 +15,7 @@ clefs =Blueprint('clefs',__name__)
 
 @clefs.route('/change/<int:ide>/rdv/', methods=['POST'])
 def change(ide):
-    rdv=requests.get("http://195.15.218.172/rdv_app/rdv/"+str(ide), headers={"Authorization":request.json["token"]})
+    rdv=requests.get("http://195.15.218.172/rdv_app/rdv/"+str(ide), headers={"Authorization":request.headers["Authorization"]})
     
     try:
         status=rdv.json()[0]['status']
@@ -67,7 +67,7 @@ def change(ide):
 
             }
         json["statut"]=2
-        rdv=requests.put("http://195.15.218.172/rdv_app/rdv/"+str(ide),json=json,headers={"Authorization":request.json["token"]})
+        rdv=requests.put("http://195.15.218.172/rdv_app/rdv/"+str(ide),json=json,headers={"Authorization":request.headers["Authorization"]})
 
         return jsonify({"Rendez vous":rdv.json()}), 200
     else:
@@ -76,7 +76,7 @@ def change(ide):
 
 @clefs.route('/affectation/rdv/<int:ide>', methods=['POST', 'PUT'])
 def update(ide):
-        rdv=requests.get("http://195.15.218.172/rdv_app/rdv/"+str(ide), headers={"Authorization":request.json["token"]})
+        rdv=requests.get("http://195.15.218.172/rdv_app/rdv/"+str(ide), headers={"Authorization":request.headers["Authorization"]})
 
         try:
             status=rdv.json()['status']
@@ -126,7 +126,7 @@ def update(ide):
             json["statut"]=3
             #verify audit planneur and constat
             if request.json["constat"] != None:
-                ag_con=requests.get("http://195.15.218.172/agent_app/agent/"+str(request.json["constat"]), headers={"Authorization":request.json["token"]})
+                ag_con=requests.get("http://195.15.218.172/agent_app/agent/"+str(request.json["constat"]), headers={"Authorization":request.headers["Authorization"]})
                 #do inserting of agent
                 try:
                     status=ag_con.json()['status']
@@ -142,7 +142,7 @@ def update(ide):
                 json['agent_constat']=rdv.json()[0]['agent_constat']
             
             if request.json["planner"] != None:
-                ag_con=requests.get("http://195.15.218.172/agent_app/agent/"+str(request.json["planner"]), headers={"Authorization":request.json["token"]})
+                ag_con=requests.get("http://195.15.218.172/agent_app/agent/"+str(request.json["planner"]), headers={"Authorization":request.headers["Authorization"]})
                 #do inserting of agent
                 try:
                     status=ag_con.json()['status']
@@ -158,7 +158,7 @@ def update(ide):
                 json['audit_planneur']=rdv.json()[0]['audit_planneur']
                 
             
-            rdv=requests.put("http://195.15.218.172/rdv_app/rdv/"+str(ide),json=json,headers={"Authorization":request.json["token"]})
+            rdv=requests.put("http://195.15.218.172/rdv_app/rdv/"+str(ide),json=json,headers={"Authorization":request.headers["Authorization"]})
 
             return jsonify({"Rendez vous":rdv.json()}), 200
         else:
@@ -169,7 +169,7 @@ def update(ide):
 @clefs.route('/modify/rdv/<int:ide>', methods=['POST', 'PUT',"GET"])
 def modify(ide):
         #send_email("touchone0001@gmail.com")
-        rdv=requests.get("http://195.15.218.172/rdv_app/rdv/"+str(ide), headers={"Authorization":request.json["token"]})
+        rdv=requests.get("http://195.15.218.172/rdv_app/rdv/"+str(ide), headers={"Authorization":request.headers["Authorization"]})
         
         
         try:
@@ -224,7 +224,7 @@ def modify(ide):
                 json["date"]=request.json["date"]
             #verify audit planneur and constat
             if request.json["constat"] != None:
-                ag_con=requests.get("http://195.15.218.172/agent_app/agent/"+int(request.json["constat"]), headers={"Authorization":request.json["token"]})
+                ag_con=requests.get("http://195.15.218.172/agent_app/agent/"+int(request.json["constat"]), headers={"Authorization":request.headers["Authorization"]})
                 #do inserting of agent
                 try:
                     status=ag_con.json()['status']
@@ -240,7 +240,7 @@ def modify(ide):
                 json['agent_constat']=rdv.json()[0]['agent_constat']
             
             if request.json["planner"] != None:
-                ag_con=requests.get("http://195.15.218.172/agent_app/agent/"+int(request.json["planner"]), headers={"Authorization":request.json["token"]})
+                ag_con=requests.get("http://195.15.218.172/agent_app/agent/"+int(request.json["planner"]), headers={"Authorization":request.headers["Authorization"]})
                 #do inserting of agent
                 try:
                     status=ag_con.json()['status']
@@ -255,7 +255,7 @@ def modify(ide):
             else:
                 json['audit_planneur']=rdv.json()[0]['audit_planneur']
 
-            rdv=requests.put("http://195.15.218.172/rdv_app/rdv/"+str(ide),json=json,headers={"Authorization":request.json["token"]})
+            rdv=requests.put("http://195.15.218.172/rdv_app/rdv/"+str(ide),json=json,headers={"Authorization":request.headers["Authorization"]})
 
             
 

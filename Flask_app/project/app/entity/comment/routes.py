@@ -49,12 +49,17 @@ def commen_spe(ide):
 
 @omment.route('/make/comment/', methods=['POST'])
 def commen_make():
-    rdv=request.json['rdv']
     user=request.json['user']
-    comme=request.json['comment']
-    commen=comment(user_id=user,rdv_id=rdv,contenu=comme)
-    db.session.add(commen)
-    db.session.commit()
+    check=requests.get("http://195.15.218.172/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
+    try:
+        if check.json()['id']:
+            rdv=request.json['rdv']
+            comme=request.json['comment']
+            commen=comment(user_id=user,rdv_id=rdv,contenu=comme)
+            db.session.add(commen)
+            db.session.commit()
 
-    return jsonify({"status": "comment sent"}), 200
+        return jsonify({"status": "comment sent"}), 200
+    except:
+        return jsonify({"Fail": "donnee n'exist pas or token n'existe pas"}), 400
 
