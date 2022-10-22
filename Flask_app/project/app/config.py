@@ -8,8 +8,8 @@ class Config:
     MAIL_USE_TLS =True
     MAIL_USERNAME = 'noreply@amexpert.pro'
     MAIL_PASSWORD = 'TooR123$'
-    UPLOAD_FOLDER=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'doc')
-    UPLOAD_FOLDER=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'img')
+    UPLOAD_FOLDER=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+
 
 
 
