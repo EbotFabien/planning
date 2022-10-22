@@ -17,8 +17,8 @@ omment=Blueprint('comment',__name__)
 
 @omment.route('/all/comment/', methods=['GET'])
 def commen():
-    
-    commen=comment.query.all()
+    ide=request.get('rdv')
+    commen=comment.query.filter_by(rdv_id=ide).all()
 
     return jsonify({"comment": commen}), 200
 
