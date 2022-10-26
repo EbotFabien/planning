@@ -50,7 +50,9 @@ def commen_spe(ide):
 @omment.route('/make/comment/', methods=['POST'])
 def commen_make():
     user=request.json['user']
+    
     check=requests.get("http://195.15.218.172/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
+    print(check)
     try:
         if check.json()['id']:
             rdv=request.json['rdv']
