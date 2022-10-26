@@ -29,6 +29,7 @@ def commen():
             "user_id":i.user_id,
             "rdv_id":i.rdv_id,
             "Type":i.Type,
+            "comment":comment.comment,
             "route":i.route,
             "date":i.date
         }
@@ -46,11 +47,20 @@ def commen_spe(ide):
             "user_id":comment.user_id,
             "rdv_id":comment.rdv_id,
             "Type":comment.Type,
+            "comment":comment.comment,
             "route":comment.route,
             "date":comment.date
         }
     all_.append(json)
     return jsonify({"document": all_}), 200
+
+@doct.route('/<int:ide>/delete/document/', methods=['POST'])
+def dele(ide):
+
+    comment=document.query.filter_by(id=ide).delete()
+    db.session.commit()
+    return jsonify({"status": "document deleted"}), 200
+
 
 @doct.route('/make/document/', methods=['POST','PUT'])
 def make_document():
@@ -64,7 +74,8 @@ def make_document():
             uploaded_file.save(file_path)
             rdv=request.form['rdv']
             tp=request.form['type']
-            commen=document(user_id=user,rdv_id=rdv,route=comme,Type=tp)
+            comment=request.form['comment']
+            commen=document(user_id=user,rdv_id=rdv,route=comme,Type=tp,comment=comment)
             db.session.add(commen)
             db.session.commit()
 
