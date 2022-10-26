@@ -1,5 +1,5 @@
 from flask import render_template, url_for,flash,redirect,request,abort,Blueprint,jsonify
-from app import bcrypt
+from app import bcrypt,db
 import requests
 import json
 from app.entity.clefs.utils import send_email
@@ -268,10 +268,45 @@ def modify(ide):
 
 @clefs.route('/mail/rdv/', methods=['POST',"GET"])
 def mail():
-    
+    db.create_all()
     users=request.json["users"]
-    subject=request.json["message"]
-    send_email(users,subject)
+    status=request.json["status"]
+    if status == "CREATION COMMANDE":
+        client=request.json["client"]
+        Type=request.json["intervention"]
+        jour=request.json["jour"]
+        message="La commande du client "+client+" type d'intervention "+Type+" du "+jour+" a été créé avec succès"
+    if status == "CHANGEMENT DE STATUT":
+        client=request.json["client"]
+        Type=request.json["intervention"]
+        date=request.json["date"]
+        message="Le RDV  type d'intervention "+Type+" du client "+client+" du "+date+" est passé de l'état ancien au nouvel état Veuillez vous connecter pour consulter les différentes informations"
+    if status == "AFFECTATION AGENT SECTEUR":
+        client=request.json["client"]
+        Type=request.json["intervention"]
+        date=request.json["date"]
+        agent=request.json["agent"]
+        message="L'agent constat responsable du RDV  type d'intervention "+Type+" du client "+client+" le "+date+" est "+agent
+    if status == "CONFIRMATION HORAIRES":
+        client=request.json["client"]
+        Type=request.json["intervention"]
+        date=request.json["date"]
+        heure=request.json["heure"]
+        message="Bonjour votre RDV pour la réalisation  type d'intervention "+Type+" du client "+client+" est confirmée pour le"+date+ "a" +heure
+    if status == "Creation Compte":
+        login=request.json["login"]
+        MDP=request.json["mdp"]
+        message="Bonjour votre compte a été activé "+login+','+MDP+" veuillez vous connecter pour vous authentifier"
+    if status == "MODIFICATION USER":
+        login=request.json["login"]
+        MDP=request.json["mdp"]
+        message="Bonjour votre compte à été modifié "+login+','+MDP+" veuillez vous connecter pour consulter les mises à jour"
+
+
+    
+        
+
+    send_email(users,message)
     
 
     return jsonify({"Mail sent":'sent'}), 200

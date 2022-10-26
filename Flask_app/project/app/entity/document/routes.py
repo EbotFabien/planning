@@ -54,6 +54,14 @@ def commen_spe(ide):
     all_.append(json)
     return jsonify({"document": all_}), 200
 
+@doct.route('/<int:ide>/delete/document/', methods=['POST'])
+def dele(ide):
+
+    comment=document.query.filter_by(id=ide).delete()
+    db.session.commit()
+    return jsonify({"status": "document deleted"}), 200
+
+
 @doct.route('/make/document/', methods=['POST','PUT'])
 def make_document():
     user=request.form['user']
