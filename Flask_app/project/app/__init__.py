@@ -7,6 +7,7 @@ from flask_mail import Mail
 from app.config import Config
 import os
 from firebase_admin import credentials, firestore, initialize_app
+from flask_cors import CORS
 # Initialize Flask App
 
 # Initialize Firestore DB
@@ -21,7 +22,7 @@ mail = Mail()
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
-
+    CORS(app, resources=r'/api/*') 	
     db.init_app(app)
     bcrypt.init_app(app)
     mail.init_app(app)
@@ -30,7 +31,7 @@ def create_app(config_class=Config):
     from app.entity.clefs.routes import clefs
     from app.entity.comment.routes import omment
     from app.entity.document.routes import doct
-   
+    CORS(app, resources={r"/api/*": {"origins": "*"}})
     
     
     app.register_blueprint(clefs)

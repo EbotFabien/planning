@@ -58,9 +58,9 @@ def commen_spe(ide):
 def make_document():
     user=request.form['user']
     check=requests.get("http://195.15.218.172/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
-    try:
-        if check.json()['id']:
-            uploaded_file = request.files['file']
+    #try:
+    if check.json()['id']:
+            uploaded_file = request.files['fichier']
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], uploaded_file.filename)
             comme=str(file_path)
             uploaded_file.save(file_path)
@@ -71,6 +71,6 @@ def make_document():
             db.session.add(commen)
             db.session.commit()
 
-        return jsonify({"status": "document sent"}), 200
-    except:
-        return jsonify({"Fail": "donnee n'exist pas or token n'existe pas"}), 403
+    return jsonify({"status": "document sent"}), 200
+    #except:
+        #return jsonify({"Fail": "donnee n'exist pas or token n'existe pas"}), 403
