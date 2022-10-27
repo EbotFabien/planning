@@ -28,7 +28,7 @@ def create_app(config_class=Config):
         response.headers.add("Access-Control-Allow-Methods", "*")
     #return response
     app.config.from_object(Config)
-    CORS(app, resources=r'/api/*') 	
+    CORS(app, resources=r'http://127.0.0.1') 	
     db.init_app(app)
     bcrypt.init_app(app)
     mail.init_app(app)
@@ -38,7 +38,7 @@ def create_app(config_class=Config):
     from app.entity.comment.routes import omment
     from app.entity.document.routes import doct
     from app.entity.tarif.routes import tarif
-    CORS(app, resources={r"/api/*": {"origins": "*"}})
+    CORS(app, resources={r"http://127.0.0.1": {"origins": "*"}})
     
     
     app.register_blueprint(clefs)
