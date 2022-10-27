@@ -280,19 +280,29 @@ def mail():
         client=request.json["client"]
         Type=request.json["intervention"]
         date=request.json["date"]
-        message="Le RDV  type d'intervention "+Type+" du client "+client+" du "+date+" est passé de l'état ancien au nouvel état Veuillez vous connecter pour consulter les différentes informations"
+        nouvel=request.json["new"]
+        if nouvel ==1:
+            nouvel='Attente de prise en charge'
+        if nouvel ==2:
+            nouvel='Prise en charge'
+        if nouvel ==3:
+            nouvel='Action requise'
+        if nouvel ==4:
+            nouvel='Organise'
+        message="Le RDV  type d'intervention "+Type+" du client "+client+" du "+date+" est passé de l'état "+nouvel+" Veuillez vous connecter pour consulter les différentes informations"
     if status == "AFFECTATION AGENT SECTEUR":
         client=request.json["client"]
         Type=request.json["intervention"]
         date=request.json["date"]
-        agent=request.json["agent"]
-        message="L'agent constat responsable du RDV  type d'intervention "+Type+" du client "+client+" le "+date+" est "+agent
+        agent1=request.json["agent1"]
+        agent2=request.json["agent2"]
+        message="L'agent constat responsable du RDV  type d'intervention "+Type+" du client "+client+" le "+date+" est "+agent1+ " et "+agent2
     if status == "CONFIRMATION HORAIRES":
         client=request.json["client"]
         Type=request.json["intervention"]
         date=request.json["date"]
         heure=request.json["heure"]
-        message="Bonjour votre RDV pour la réalisation  type d'intervention "+Type+" du client "+client+" est confirmée pour le"+date+ "a" +heure
+        message="Bonjour votre RDV pour la réalisation  type d'intervention "+Type+" du client "+client+" est confirmée pour le "+date+ " a " +heure
     if status == "Creation Compte":
         login=request.json["login"]
         MDP=request.json["mdp"]
@@ -300,8 +310,20 @@ def mail():
     if status == "MODIFICATION USER":
         login=request.json["login"]
         MDP=request.json["mdp"]
-        message="Bonjour votre compte à été modifié "+login+','+MDP+" veuillez vous connecter pour consulter les mises à jour"
-
+        if MDP != '':
+            message="Bonjour votre compte à été modifié "+login+','+MDP+" veuillez vous connecter pour consulter les mises à jour"
+        else:
+            message="Bonjour votre compte à été modifié ,veuillez vous connecter pour consulter les mises à jour"
+    if status == "COMMENT":
+        rdv=request.json["rdv"]
+        message="Un commentaire a ete ajouter au rendezvous  "+rdv+" veuillez vous connecter pour consulter les mises à jour"
+    if status == "DOCUMENT":
+        rdv=request.json["rdv"]
+        message="Un Document a ete ajouter au rendezvous  "+rdv+" veuillez vous connecter pour consulter les mises à jour"
+    if status == "PASSE":
+        login=request.json["login"]
+        rdv=request.json["mdp"]
+        message="Bonjour votre  mot de passe  a été changer "+login+','+MDP+" veuillez vous connecter pour vous authentifier"
 
     
         

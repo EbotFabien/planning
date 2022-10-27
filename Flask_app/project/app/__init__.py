@@ -31,12 +31,14 @@ def create_app(config_class=Config):
     from app.entity.clefs.routes import clefs
     from app.entity.comment.routes import omment
     from app.entity.document.routes import doct
+    from app.entity.tarif.routes import tarif
     CORS(app, resources={r"/api/*": {"origins": "*"}})
     
     
     app.register_blueprint(clefs)
     app.register_blueprint(omment)
     app.register_blueprint(doct)
+    app.register_blueprint(tarif)
     
     
 

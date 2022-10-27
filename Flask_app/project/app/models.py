@@ -38,3 +38,20 @@ class document(db.Model):
 
     def __repr__(self):
         return '<document %r>' %self.id
+
+class tarifs(db.Model):
+    __tablename__ = 'tarifs'
+
+    id = db.Column(db.Integer,primary_key=True)
+    user_id=db.Column(db.String)
+    name=db.Column(db.String)
+    Type=db.Column(db.String)
+    comment=db.Column(db.String) 
+    price=db.Column(db.String)
+    created= db.Column(db.String)
+    updated= db.Column(db.String)
+    visibility =db.Column(db.Boolean,default=True)
+    
+
+    def __repr__(self):
+        return '<tarifs %r>' %self.id
