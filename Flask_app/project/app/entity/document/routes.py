@@ -29,7 +29,7 @@ def commen():
             "user_id":i.user_id,
             "rdv_id":i.rdv_id,
             "Type":i.Type,
-            "comment":comment.comment,
+            "comment":i.comment,
             "route":i.route,
             "date":i.date
         }
