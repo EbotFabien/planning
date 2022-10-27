@@ -20,9 +20,17 @@ app= create_app()
 
 @tarif.route('/all/tarif/', methods=['GET'])
 def tar():
-    comment=tarifs.query.all()
+    start=request.args.get('start')
+    count=request.args.get('count')
+    user=request.args.get('user')
+    commen=tarifs.query.filter_by(user_id=str(user))
+    comment=commen.paginate(int(start),int(count),False)
+    nx=str(comment.next_num)
+    previous="http://195.15.218.172/cmdplannif/all/tarif/+?start="+start+"&count="+count+"&user="+user
+    next="http://195.15.218.172/cmdplannif/all/tarif/+?start="+nx+"&count="+count+"&user="+user
+    total=(comment.total/int(count))
     all_=[]
-    for i in comment:
+    for i in comment.items:
         json={
             "id":i.id,
             "user_id":i.user_id,
@@ -36,7 +44,7 @@ def tar():
         }
         all_.append(json)
 
-    return jsonify({"document":all_}), 200
+    return jsonify({"start":start,"count":count,"next":next,"previous":previous,"Total":total,"document":all_}), 200
 
 @tarif.route('/make/tarif/', methods=['POST'])
 def make_tarif():
