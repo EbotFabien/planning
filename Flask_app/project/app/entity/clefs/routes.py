@@ -315,11 +315,15 @@ def mail():
         else:
             message="Bonjour votre compte à été modifié ,veuillez vous connecter pour consulter les mises à jour"
     if status == "COMMENT":
-        rdv=request.json["rdv"]
-        message="Un commentaire a ete ajouter au rendezvous  "+rdv+" veuillez vous connecter pour consulter les mises à jour"
+        rdv=request.json["client"]
+        Type=request.json["type"]
+        Date=request.json["date"]
+        message="Un commentaire a ete ajouter au rendezvous du client "+rdv+" de type d'intervention "+Type+' de la date '+Date+".veuillez vous connecter pour consulter les mises à jour"
     if status == "DOCUMENT":
-        rdv=request.json["rdv"]
-        message="Un Document a ete ajouter au rendezvous  "+rdv+" veuillez vous connecter pour consulter les mises à jour"
+        rdv=request.json["client"]
+        Type=request.json["type"]
+        Date=request.json["date"]
+        message="Un Document a ete ajouter au rendezvous du client "+rdv+" de type d'intervention "+Type+' de la date '+Date+".veuillez vous connecter pour consulter les mises à jour"
     if status == "PASSE":
         login=request.json["login"]
         rdv=request.json["mdp"]
