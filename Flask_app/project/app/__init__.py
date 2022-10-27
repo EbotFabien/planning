@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for,flash,redirect,request, jsonify
+from flask import Flask, render_template, url_for,flash,redirect,request, jsonify,make_response
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from flask_bcrypt import Bcrypt
@@ -21,10 +21,11 @@ mail = Mail()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
-    response = make_response()
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    response.headers.add("Access-Control-Allow-Headers", "*")
-    response.headers.add("Access-Control-Allow-Methods", "*")
+    with app.app_context():
+        response = make_response()
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        response.headers.add("Access-Control-Allow-Headers", "*")
+        response.headers.add("Access-Control-Allow-Methods", "*")
     #return response
     app.config.from_object(Config)
     CORS(app, resources=r'/api/*') 	
