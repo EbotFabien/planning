@@ -21,6 +21,11 @@ mail = Mail()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
+    response = make_response()
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("Access-Control-Allow-Headers", "*")
+    response.headers.add("Access-Control-Allow-Methods", "*")
+    #return response
     app.config.from_object(Config)
     CORS(app, resources=r'/api/*') 	
     db.init_app(app)
