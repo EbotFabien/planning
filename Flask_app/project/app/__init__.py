@@ -25,7 +25,7 @@ def create_app(config_class=Config):
         response = make_response()
         response.headers.add("Access-Control-Allow-Origin", "http://127.0.0.1")
         response.headers.add("Access-Control-Allow-Headers", "*")
-        response.headers.add("Access-Control-Allow-Methods", "*")
+        response.headers.add("Access-Control-Allow-Methods", "GET")
     #return response
     app.config.from_object(Config)
     CORS(app, resources=r'/all/tarif/') 	
@@ -39,6 +39,7 @@ def create_app(config_class=Config):
     from app.entity.document.routes import doct
     from app.entity.tarif.routes import tarif
     CORS(app, resources={r"/all/tarif/": {"origins": "http://127.0.0.1"}})
+    CORS(app, resources={r"/delete/document/": {"origins": ["http://127.0.0.1","http://195.15.218.172"]}})
     
     
     app.register_blueprint(clefs)
