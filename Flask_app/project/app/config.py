@@ -9,6 +9,7 @@ class Config:
     MAIL_USERNAME = 'noreply@amexpert.pro'
     MAIL_PASSWORD = 'TooR123$'
     UPLOAD_FOLDER=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+    CORS_HEADERS= 'Content-Type'
 
 
 

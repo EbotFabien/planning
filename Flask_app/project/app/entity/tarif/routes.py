@@ -6,6 +6,7 @@ from app.entity.clefs.utils import send_email
 from app.models import tarifs
 from os.path import join, dirname, realpath
 import os
+from flask_cors import CORS,cross_origin
 
 
 
@@ -18,6 +19,7 @@ tarif=Blueprint('tarif',__name__)
 
 app= create_app()
 
+@cross_origin(origin='127.0.0.1',headers=['Content- Type','Authorization'])
 @tarif.route('/all/tarif/', methods=['GET'])
 def tar():
     start=request.args.get('start')
