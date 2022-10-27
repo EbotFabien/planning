@@ -6,6 +6,8 @@ from app.entity.clefs.utils import send_email
 from app.models import document
 from os.path import join, dirname, realpath
 import os
+from flask_cors import CORS,cross_origin
+
 
 
 
@@ -54,9 +56,10 @@ def commen_spe(ide):
     all_.append(json)
     return jsonify({"document": all_}), 200
 
-@doct.route('/<int:ide>/delete/document/', methods=['POST'])
-def dele(ide):
-
+@cross_origin(origin=['http://127.0.0.1',"http://195.15.218.172"],headers=['Content- Type','Authorization'])
+@doct.route('/delete/document/', methods=['DELETE'])
+def dele():
+    ide=int(request.json['ide'])
     comment=document.query.filter_by(id=ide).delete()
     db.session.commit()
     return jsonify({"status": "document deleted"}), 200
