@@ -23,12 +23,12 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     with app.app_context():
         response = make_response()
-        response.headers.add("Access-Control-Allow-Origin", "*")
+        response.headers.add("Access-Control-Allow-Origin", "http://127.0.0.1")
         response.headers.add("Access-Control-Allow-Headers", "*")
         response.headers.add("Access-Control-Allow-Methods", "*")
     #return response
     app.config.from_object(Config)
-    CORS(app, resources=r'http://127.0.0.1') 	
+    CORS(app, resources=r'/all/tarif/') 	
     db.init_app(app)
     bcrypt.init_app(app)
     mail.init_app(app)
@@ -38,7 +38,7 @@ def create_app(config_class=Config):
     from app.entity.comment.routes import omment
     from app.entity.document.routes import doct
     from app.entity.tarif.routes import tarif
-    CORS(app, resources={r"http://127.0.0.1": {"origins": "*"}})
+    CORS(app, resources={r"/all/tarif/": {"origins": "http://127.0.0.1"}})
     
     
     app.register_blueprint(clefs)
