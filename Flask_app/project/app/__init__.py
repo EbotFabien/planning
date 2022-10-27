@@ -25,7 +25,7 @@ def create_app(config_class=Config):
         response = make_response()
         response.headers.add("Access-Control-Allow-Origin", "http://127.0.0.1")
         response.headers.add("Access-Control-Allow-Headers", "*")
-        response.headers.add("Access-Control-Allow-Methods", "*")
+        response.headers.add("Access-Control-Allow-Methods", "GET")
     #return response
     app.config.from_object(Config)
     CORS(app, resources=r'/all/tarif/') 	

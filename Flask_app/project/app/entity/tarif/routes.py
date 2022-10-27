@@ -19,7 +19,7 @@ tarif=Blueprint('tarif',__name__)
 
 app= create_app()
 
-@cross_origin(origin='127.0.0.1',headers=['Content- Type','Authorization'])
+@cross_origin(origin='http://127.0.0.1',headers=['Content- Type','Authorization'])
 @tarif.route('/all/tarif/', methods=['GET'])
 def tar():
     start=request.args.get('start')
