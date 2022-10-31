@@ -6,8 +6,8 @@ class Config:
     MAIL_SERVER ='mail.infomaniak.ch'
     MAIL_PORT = 587
     MAIL_USE_TLS =True
-    MAIL_USERNAME = 'noreply@amexpert.pro'
-    MAIL_PASSWORD = 'TooR123$'
+    MAIL_USERNAME = 'xxxxxxxxxxs'
+    MAIL_PASSWORD = 'xxxx'
     UPLOAD_FOLDER=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
     CORS_HEADERS= 'Content-Type'
 
