@@ -328,6 +328,15 @@ def mail():
         login=request.json["login"]
         rdv=request.json["mdp"]
         message="Bonjour votre  mot de passe  a été changer "+login+','+MDP+" veuillez vous connecter pour vous authentifier"
+    if status == "MODIFICATION":
+        ref=request.json["ref"]
+        Type=request.json["intervention"]
+        Date=request.json["date"]
+        client=request.json["client"]
+        AS=request.json["AS"]
+        AC=request.json["AC"]
+        AP=request.json["AP"]
+        message="Le RDV avec ref "+ref+"et intervention"+Type+"du"+Date+ " du client "+client+ " a été modifié.Veuillez vous connecter pour consulter les mises à jour,avec AS "+AS+' ,AC '+AC+' ,AP'+AP
 
     
         
