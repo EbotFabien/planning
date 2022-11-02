@@ -336,6 +336,12 @@ def mail():
         AS=request.json["AS"]
         AC=request.json["AC"]
         AP=request.json["AP"]
+        if AS == None :
+            AS=''
+        if AC == None :
+            AC=''
+        if AP == None :
+            AP=''
         message="Le RDV avec ref "+ref+"et intervention"+Type+"du"+Date+ " du client "+client+ " a été modifié.Veuillez vous connecter pour consulter les mises à jour,avec AS "+AS+' ,AC '+AC+' ,AP'+AP
 
     
