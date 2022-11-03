@@ -4,7 +4,7 @@ from flask_mail import Message
 
 def send_email(user,message):
     msg = Message('Notifications',
-                  sender='noreply@amexpert.pro',
+                  sender='no-reply@amexpert.pro',
                   recipients=user)
     msg.body = f''' Vous avez recu ce mail depuis CMD:
                
