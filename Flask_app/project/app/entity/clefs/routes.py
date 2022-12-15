@@ -275,7 +275,7 @@ def mail():
         client=request.json["client"]
         Type=request.json["intervention"]
         jour=request.json["jour"]
-        message="La commande du client "+client+" type d'intervention "+Type+" du "+jour+" a été créé avec succès"
+        message=render_template('creation.html',client=client,Type=Type,jour=jour)
     if status == "CHANGEMENT DE STATUT":
         client=request.json["client"]
         Type=request.json["intervention"]
@@ -289,20 +289,20 @@ def mail():
             nouvel='Action requise'
         if nouvel ==4:
             nouvel='Organise'
-        message="Le RDV  type d'intervention "+Type+" du client "+client+" du "+date+" est passé de l'état "+nouvel+" Veuillez vous connecter pour consulter les différentes informations"
+        message=render_template('status.html',client=client,Type=Type,date=date)
     if status == "AFFECTATION AGENT SECTEUR":
         client=request.json["client"]
         Type=request.json["intervention"]
         date=request.json["date"]
         agent1=request.json["agent1"]
         agent2=request.json["agent2"]
-        message="L'agent constat responsable du RDV  type d'intervention "+Type+" du client "+client+" le "+date+" est "+agent1+ " et "+agent2
+        message=render_template('affectation.html',client=client,Type=Type,date=date,agent1=agent1,agent2=agent2)
     if status == "CONFIRMATION HORAIRES":
         client=request.json["client"]
         Type=request.json["intervention"]
         date=request.json["date"]
         heure=request.json["heure"]
-        message="Bonjour votre RDV pour la réalisation  type d'intervention "+Type+" du client "+client+" est confirmée pour le "+date+ " a " +heure
+        message=render_template('confirmation.html',client=client,Type=Type,date=date,heure=heure)
     if status == "Creation Compte":
         login=request.json["login"]
         MDP=request.json["mdp"]
@@ -318,12 +318,12 @@ def mail():
         rdv=request.json["client"]
         Type=request.json["type"]
         Date=request.json["date"]
-        message="Un commentaire a ete ajouter au rendezvous du client "+rdv+" de type d'intervention "+Type+' de la date '+Date+".veuillez vous connecter pour consulter les mises à jour"
+        message=render_template('comment.html',rdv=rdv,Type=Type,date=date)
     if status == "DOCUMENT":
         rdv=request.json["client"]
         Type=request.json["type"]
         Date=request.json["date"]
-        message="Un Document a ete ajouter au rendezvous du client "+rdv+" de type d'intervention "+Type+' de la date '+Date+".veuillez vous connecter pour consulter les mises à jour"
+        message=render_template('document.html',rdv=rdv,Type=Type,date=date)
     if status == "PASSE":
         login=request.json["login"]
         rdv=request.json["mdp"]
