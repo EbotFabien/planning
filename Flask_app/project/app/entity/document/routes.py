@@ -7,6 +7,9 @@ from app.models import document
 from os.path import join, dirname, realpath
 import os
 from flask_cors import CORS,cross_origin
+import xlrd
+import requests
+from time import sleep
 
 
 
@@ -90,17 +93,60 @@ def make_document():
 @cross_origin(origin=['http://127.0.0.1',"http://195.15.218.172"],headers=['Content- Type','Authorization'])
 @doct.route('/make/doc/', methods=['POST','PUT'])
 def make_doc():
-    user=request.form['user']
-    check=requests.get("http://195.15.218.172/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
-    #try:
-    if check.json()['id']:
-            rdv=request.form['rdv']
-            tp=request.form['type']
-            comme=request.form['route']
-            comment=request.form['comment']
-            commen=document(user_id=user,rdv_id=rdv,route=comme,Type=tp,comment=comment)
-            db.session.add(commen)
-            db.session.commit()
-            return jsonify({"status": "document sent"}), 200
-    else:
-        return jsonify({"Fail": "donnee n'exist pas or token n'existe pas"}), 403
+    loc="/Users/pro2015/Desktop/pph folder/cmd/Flask_app/project/app/static/appointment_documents.xls"
+    wb = xlrd.open_workbook(loc)
+    sheet = wb.sheet_by_index(0)
+    
+    sheet.cell_value(0,0)
+    for i in range(0,20281):
+        name=sheet.row_values(i+1)
+        inv=name[5][::-1]
+        url=inv[0:inv.index('/')]
+        url="/work/fichiers/appointments/documents/" + url[::-1]
+        json={
+            'rdv':int(name[1]),
+            'type':'Fichier',
+            'route':url,
+            'comment':name[4],
+            'user':int(name[2]),
+        }
+        user=json['user']
+        check=requests.get("http://195.15.218.172/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
+        #try:
+        if check.json()['id']:
+                rdv=json['rdv']
+                tp=json['type']
+                comme=json['route']
+                comment=json['comment']
+                commen=document(user_id=user,rdv_id=rdv,route=comme,Type=tp,comment=comment)
+                db.session.add(commen)
+                db.session.commit()
+    loc="/Users/pro2015/Desktop/pph folder/cmd/Flask_app/project/app/static/appointment_photos.xls"
+    wb = xlrd.open_workbook(loc)
+    sheet = wb.sheet_by_index(0)
+    
+    sheet.cell_value(0,0)
+    for i in range(0,141):
+        name=sheet.row_values(i+1)
+        inv=name[5][::-1]
+        url=inv[0:inv.index('/')]
+        url="/work/fichiers/appointments/photos/" + url[::-1]
+        json={
+            'rdv':int(name[1]),
+            'type':'Photos',
+            'route':url,
+            'comment':name[4],
+            'user':int(name[2]),
+        }
+        user=json['user']
+        check=requests.get("http://195.15.218.172/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
+        if check.json()['id']:
+                rdv=json['rdv']
+                tp=json['type']
+                comme=json['route']
+                comment=json['comment']
+                commen=document(user_id=user,rdv_id=rdv,route=comme,Type=tp,comment=comment)
+                db.session.add(commen)
+                db.session.commit()
+    
+    return jsonify({"Fail": "donnee n'exist pas or token n'existe pas"}), 200
