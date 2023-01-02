@@ -1,4 +1,4 @@
-from app.models import document
+from app.models import document,comment
 from app import create_app,db
 
 
@@ -7,7 +7,7 @@ app= create_app()
 
 def doc():
     with app.app_context():
-        loc=os.path.join(os.path.dirname(os.path.abspath(__file__)), "static","appointment_documents.xls")
+        loc="/work/www/cmd/Flask_app/project/app/static/appointment_documents.xls"
         wb = xlrd.open_workbook(loc)
         sheet = wb.sheet_by_index(0)
         
@@ -25,7 +25,7 @@ def doc():
                 'user':int(name[2]),
             }
             user=json['user']
-            check=requests.get("http://195.15.228.250/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
+            #check=requests.get("http://195.15.228.250/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
             #try:
             #if check.json()['id']:
             rdv=json['rdv']
@@ -39,7 +39,7 @@ def doc():
 
 def pic():
     with app.app_context():
-        loc="/Users/pro2015/Desktop/pph folder/cmd/Flask_app/project/app/static/appointment_photos.xls"
+        loc="/work/www/cmd/Flask_app/project/app/static/appointment_photos.xls"
         wb = xlrd.open_workbook(loc)
         sheet = wb.sheet_by_index(0)
         
@@ -57,7 +57,7 @@ def pic():
                 'user':int(name[2]),
             }
             user=json['user']
-            check=requests.get("http://195.15.218.172/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
+            #check=requests.get("http://195.15.218.172/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
             #if #check.json()['id']:
             rdv=json['rdv']
             tp=json['type']
@@ -69,7 +69,7 @@ def pic():
 
 def comment():
     with app.app_context():
-        loc="/Users/pro2015/Desktop/pph folder/cmd/Flask_app/project/app/static/appointment_photos.xls"
+        loc="/work/www/cmd/Flask_app/project/app/static/appointment_comments.xls"
         wb = xlrd.open_workbook(loc)
         sheet = wb.sheet_by_index(0)
         
@@ -82,7 +82,7 @@ def comment():
                 'user':int(name[2]),
             }
             user=json['user']
-            check=requests.get("http://195.15.218.172/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
+            #check=requests.get("http://195.15.218.172/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
             #if #check.json()['id']:
             rdv=request.json['rdv']
             comme=request.json['comment']
