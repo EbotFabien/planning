@@ -90,7 +90,7 @@ def make_document():
         #return jsonify({"Fail": "donnee n'exist pas or token n'existe pas"}), 403
 
 
-@cross_origin(origin=['http://127.0.0.1',"http://195.15.228.250/"],headers=['Content- Type','Authorization'])
+#@cross_origin(origin=['http://127.0.0.1',"http://195.15.228.250/"],headers=['Content- Type','Authorization'])
 @doct.route('/make/doc/', methods=['POST','PUT'])
 def make_doc():
     loc=os.path.join(os.path.dirname(os.path.abspath(__file__)), "static","appointment_documents.xls")
