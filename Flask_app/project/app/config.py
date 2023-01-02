@@ -8,7 +8,8 @@ class Config:
     MAIL_USE_TLS =True
     MAIL_USERNAME = 'no-reply@amexpert.pro'
     MAIL_PASSWORD = 'TooR123$'
-    UPLOAD_FOLDER=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+    #UPLOAD_FOLDER=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+    UPLOAD_FOLDER="/work/fichiers/appointments/documents/"#os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
     CORS_HEADERS= 'Content-Type'
 
 

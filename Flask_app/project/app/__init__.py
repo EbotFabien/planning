@@ -18,6 +18,9 @@ db=SQLAlchemy()
 bcrypt = Bcrypt()
 mail = Mail()
 
+#@app.cli.command("init_db")
+#def init_db():
+#    models.init_db()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
