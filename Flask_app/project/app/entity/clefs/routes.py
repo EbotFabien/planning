@@ -318,12 +318,12 @@ def mail():
         rdv=request.json["client"]
         Type=request.json["type"]
         Date=request.json["date"]
-        message=render_template('comment.html',rdv=rdv,Type=Type,date=date)
+        message=render_template('comment.html',rdv=rdv,Type=Type,date=Date)
     if status == "DOCUMENT":
         rdv=request.json["client"]
         Type=request.json["type"]
         Date=request.json["date"]
-        message=render_template('document.html',rdv=rdv,Type=Type,date=date)
+        message=render_template('document.html',rdv=rdv,Type=Type,date=Date)
     if status == "PASSE":
         login=request.json["login"]
         rdv=request.json["mdp"]

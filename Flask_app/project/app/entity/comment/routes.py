@@ -46,7 +46,7 @@ def commen_spe(ide):
 
 @cross_origin(origin=['http://127.0.0.1',"http://195.15.228.250"],headers=['Content- Type','Authorization'])
 @omment.route('/<int:ide>/delete/comment/', methods=['DELETE'])
-def commen_spe(ide):
+def commen_sp(ide):
     comment=comment.query.filter_by(id=ide).delete()
     db.session.commit()
     return jsonify({"status": "comment deleted"}), 200

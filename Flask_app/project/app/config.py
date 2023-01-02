@@ -2,13 +2,18 @@ import os
 
 class Config:
     SECRET_KEY='FABIENCLASSIC'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///cmd.db'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///cmd1.db'
     MAIL_SERVER ='mail.infomaniak.ch'
     MAIL_PORT = 587
     MAIL_USE_TLS =True
-    MAIL_USERNAME = 'xxxxxxxxxxs'
-    MAIL_PASSWORD = 'xxxx'
+    MAIL_USERNAME = 'no-reply@amexpert.pro'
+    MAIL_PASSWORD = 'TooR123$'
+<<<<<<< HEAD
     UPLOAD_FOLDER="/work/fichiers/appointments/documents/"#os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+=======
+    UPLOAD_FOLDER=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+    #UPLOAD_FOLDER="/work/fichiers/appointments/documents/"#os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+>>>>>>> 8c9a7dcc8f2d3cb65bd467f7bb9779ed3e2a7733
     CORS_HEADERS= 'Content-Type'
 
 
