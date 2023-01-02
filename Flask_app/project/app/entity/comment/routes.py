@@ -51,6 +51,8 @@ def commen_sp(ide):
     db.session.commit()
     return jsonify({"status": "comment deleted"}), 200
 
+
+@cross_origin(origin=['http://127.0.0.1',"http://195.15.218.172"],headers=['Content- Type','Authorization'])
 @omment.route('/make/comment/', methods=['POST'])
 def commen_make():
     user=request.json['user']

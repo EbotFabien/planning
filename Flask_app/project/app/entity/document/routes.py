@@ -85,3 +85,22 @@ def make_document():
     return jsonify({"status": "document sent"}), 200
     #except:
         #return jsonify({"Fail": "donnee n'exist pas or token n'existe pas"}), 403
+
+
+@cross_origin(origin=['http://127.0.0.1',"http://195.15.218.172"],headers=['Content- Type','Authorization'])
+@doct.route('/make/doc/', methods=['POST','PUT'])
+def make_doc():
+    user=request.form['user']
+    check=requests.get("http://195.15.218.172/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
+    #try:
+    if check.json()['id']:
+            rdv=request.form['rdv']
+            tp=request.form['type']
+            comme=request.form['route']
+            comment=request.form['comment']
+            commen=document(user_id=user,rdv_id=rdv,route=comme,Type=tp,comment=comment)
+            db.session.add(commen)
+            db.session.commit()
+            return jsonify({"status": "document sent"}), 200
+    else:
+        return jsonify({"Fail": "donnee n'exist pas or token n'existe pas"}), 403
