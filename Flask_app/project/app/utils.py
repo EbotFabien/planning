@@ -46,6 +46,7 @@ def doc():
 
 def pic():
     #with app.app_context():
+    cursorObj = con.cursor()
     loc="/work/www/cmd/Flask_app/project/app/static/appointment_photos.xls"
     wb = xlrd.open_workbook(loc)
     sheet = wb.sheet_by_index(0)
@@ -79,28 +80,29 @@ def pic():
     con.close()
 
 def comment():
-    with app.app_context():
-        loc="/work/www/cmd/Flask_app/project/app/static/appointment_comments.xls"
-        wb = xlrd.open_workbook(loc)
-        sheet = wb.sheet_by_index(0)
-        
-        sheet.cell_value(0,0)
-        for i in range(0,4807):
-            name=sheet.row_values(i+1)
-            json={
-                'rdv':int(name[1]),
-                'comment':name[3],
-                'user':int(name[2]),
-            }
-            user=json['user']
-            #check=requests.get("http://195.15.218.172/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
-            #if #check.json()['id']:
-            rdv=request.json['rdv']
-            comme=request.json['comment']
-            entities=(user,rdv,comme)
-            cursorObj.execute('INSERT INTO comment(user_id, rdv_id,contenu) VALUES(?, ?, ?)', entities)
-            con.commit()
-            print(i)
+    cursorObj = con.cursor()
+    #with app.app_context():
+    loc="/work/www/cmd/Flask_app/project/app/static/appointment_comments.xls"
+    wb = xlrd.open_workbook(loc)
+    sheet = wb.sheet_by_index(0)
+    
+    sheet.cell_value(0,0)
+    for i in range(0,4807):
+        name=sheet.row_values(i+1)
+        json={
+            'rdv':int(name[1]),
+            'comment':name[3],
+            'user':int(name[2]),
+        }
+        user=json['user']
+        #check=requests.get("http://195.15.218.172/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
+        #if #check.json()['id']:
+        rdv=request.json['rdv']
+        comme=request.json['comment']
+        entities=(user,rdv,comme)
+        cursorObj.execute('INSERT INTO comment(user_id, rdv_id,contenu) VALUES(?, ?, ?)', entities)
+        con.commit()
+        print(i)
     
     cursorObj.close()
     con.close()
