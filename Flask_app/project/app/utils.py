@@ -44,7 +44,7 @@ def doc():
         
 
 
-def pic():
+'''def pic():
     with app.app_context():
         loc="/work/www/cmd/Flask_app/project/app/static/appointment_photos.xls"
         wb = xlrd.open_workbook(loc)
@@ -95,6 +95,6 @@ def comment():
             comme=request.json['comment']
             commen=comment(user_id=user,rdv_id=rdv,contenu=comme)
             db.session.add(commen)
-            db.session.commit()
+            db.session.commit()'''
 
 doc()
