@@ -1,9 +1,9 @@
 import xlrd
 import sqlite3
+from datetime import datetime
 
 
-
-con = sqlite3.connect('cmd1.db')
+con = sqlite3.connect('cmd3.db')
 
 
 def doc():
@@ -23,7 +23,7 @@ def doc():
             'rdv':int(name[1]),
             'type':'Fichier',
             'route':url,
-            'comment':name[3],
+            'comment':name[4],
             'user':int(name[2]),
         }
         user=json['user']
@@ -34,9 +34,12 @@ def doc():
         tp=json['type']
         comme=json['route']
         comment=json['comment']
-        entities=(user,rdv,comme,tp,comment)
-        cursorObj.execute('INSERT INTO document(user_id, rdv_id,route,Type,comment) VALUES(?, ?, ?,?,?)', entities)
+        date=datetime.now()
+        #print(date)
+        entities=(user,rdv,comme,tp,comment,date)
+        cursorObj.execute('INSERT INTO document(user_id, rdv_id,route,Type,comment,date) VALUES(?, ?, ?,?,?,?)', entities)
         con.commit()
+        
     
     cursorObj.close()
     con.close()
@@ -70,8 +73,9 @@ def pic():
         tp=json['type']
         comme=json['route']
         comment=json['comment']
-        entities=(user,rdv,comme,tp,comment)
-        cursorObj.execute('INSERT INTO document(user_id, rdv_id,route,Type,comment) VALUES(?, ?, ?,?,?)', entities)
+        date=datetime.now()
+        entities=(user,rdv,comme,tp,comment,date)
+        cursorObj.execute('INSERT INTO document(user_id, rdv_id,route,Type,comment,date) VALUES(?, ?, ?,?,?,?)', entities)
         con.commit()
         print(i)
     
@@ -98,14 +102,16 @@ def comment():
         #if #check.json()['id']:
         rdv=json['rdv']
         comme=json['comment']
-        entities=(user,rdv,comme)
-        cursorObj.execute('INSERT INTO comment(user_id, rdv_id,contenu) VALUES(?, ?, ?)', entities)
+        date=datetime.now()
+        entities=(user,rdv,comme,date)
+        cursorObj.execute('INSERT INTO comment(user_id, rdv_id,contenu,date) VALUES(?, ?, ?,?)', entities)
         con.commit()
         print(i)
     
     cursorObj.close()
     con.close()
-
+#doc()
+#pic()
 comment()
 print("first step")
 '''pic()
