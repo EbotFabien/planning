@@ -6,8 +6,8 @@ class Config:
     MAIL_SERVER ='mail.infomaniak.ch'
     MAIL_PORT = 587
     MAIL_USE_TLS =True
-    MAIL_USERNAME = xxxxxxxxx
-    MAIL_PASSWORD = xxxxxxxxx
+    MAIL_USERNAME = 'xxxxxxxxx'
+    MAIL_PASSWORD = 'xxxxxxxxx'
     UPLOAD_FOLDER=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
     #UPLOAD_FOLDER="/work/fichiers/appointments/documents/"#os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
     CORS_HEADERS= 'Content-Type'

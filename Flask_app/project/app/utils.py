@@ -1,4 +1,3 @@
-
 import xlrd
 import sqlite3
 
@@ -10,7 +9,7 @@ con = sqlite3.connect('cmd1.db')
 def doc():
     #with app.app_context():
     cursorObj = con.cursor()
-    loc="/work/www/cmd/Flask_app/project/app/static/appointment_documents.xls"
+    loc="/Users/pro2015/Desktop/pph folder/cmd/Flask_app/project/app/static/appointment_documents.xls"#"/work/www/cmd/Flask_app/project/app/static/appointment_documents.xls"
     wb = xlrd.open_workbook(loc)
     sheet = wb.sheet_by_index(0)
     
@@ -47,7 +46,7 @@ def doc():
 def pic():
     #with app.app_context():
     cursorObj = con.cursor()
-    loc="/work/www/cmd/Flask_app/project/app/static/appointment_photos.xls"
+    loc="/Users/pro2015/Desktop/pph folder/cmd/Flask_app/project/app/static/appointment_photos.xls"
     wb = xlrd.open_workbook(loc)
     sheet = wb.sheet_by_index(0)
     
@@ -82,12 +81,12 @@ def pic():
 def comment():
     cursorObj = con.cursor()
     #with app.app_context():
-    loc="/work/www/cmd/Flask_app/project/app/static/appointment_comments.xls"
+    loc="/Users/pro2015/Desktop/pph folder/cmd/Flask_app/project/app/static/appointment_comments.xls"
     wb = xlrd.open_workbook(loc)
     sheet = wb.sheet_by_index(0)
     
     sheet.cell_value(0,0)
-    for i in range(0,4807):
+    for i in range(0,4805):
         name=sheet.row_values(i+1)
         json={
             'rdv':int(name[1]),
@@ -97,8 +96,8 @@ def comment():
         user=json['user']
         #check=requests.get("http://195.15.218.172/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
         #if #check.json()['id']:
-        rdv=request.json['rdv']
-        comme=request.json['comment']
+        rdv=json['rdv']
+        comme=json['comment']
         entities=(user,rdv,comme)
         cursorObj.execute('INSERT INTO comment(user_id, rdv_id,contenu) VALUES(?, ?, ?)', entities)
         con.commit()
@@ -107,7 +106,9 @@ def comment():
     cursorObj.close()
     con.close()
 
-pic()
+comment()
+print("first step")
+'''pic()
 print("first step")
 comment()
-print(23)
+print(23)'''
