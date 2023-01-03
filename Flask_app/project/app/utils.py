@@ -1,40 +1,47 @@
-from app.models import document,comment
-from app import create_app,db
+
+import xlrd
+import sqlite3
 
 
-app= create_app()
+
+con = sqlite3.connect('cmd1.db')
 
 
 def doc():
-    with app.app_context():
-        loc="/work/www/cmd/Flask_app/project/app/static/appointment_documents.xls"
-        wb = xlrd.open_workbook(loc)
-        sheet = wb.sheet_by_index(0)
+    #with app.app_context():
+    cursorObj = con.cursor()
+    loc="/work/www/cmd/Flask_app/project/app/static/appointment_documents.xls"
+    wb = xlrd.open_workbook(loc)
+    sheet = wb.sheet_by_index(0)
+    
+    sheet.cell_value(0,0)
+    for i in range(0,20281):
+        name=sheet.row_values(i+1)
+        inv=name[5][::-1]
+        url=inv[0:inv.index('/')]
+        url="/work/fichiers/appointments/documents/" + url[::-1]
+        json={
+            'rdv':int(name[1]),
+            'type':'Fichier',
+            'route':url,
+            'comment':name[3],
+            'user':int(name[2]),
+        }
+        user=json['user']
+        #check=requests.get("http://195.15.228.250/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
+        #try:
+        #if check.json()['id']:
+        rdv=json['rdv']
+        tp=json['type']
+        comme=json['route']
+        comment=json['comment']
+        entities=(user,rdv,comme,tp,comment)
+        cursorObj.execute('INSERT INTO documen(user_id, rdv_id,route,Type,comment) VALUES(?, ?, ?,?,?)', entities)
+        con.commit()
+    
+    cursorObj.close()
+    con.close()
         
-        sheet.cell_value(0,0)
-        for i in range(0,20281):
-            name=sheet.row_values(i+1)
-            inv=name[5][::-1]
-            url=inv[0:inv.index('/')]
-            url="/work/fichiers/appointments/documents/" + url[::-1]
-            json={
-                'rdv':int(name[1]),
-                'type':'Fichier',
-                'route':url,
-                'comment':name[3],
-                'user':int(name[2]),
-            }
-            user=json['user']
-            #check=requests.get("http://195.15.228.250/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
-            #try:
-            #if check.json()['id']:
-            rdv=json['rdv']
-            tp=json['type']
-            comme=json['route']
-            comment=json['comment']
-            commen=document(user_id=user,rdv_id=rdv,route=comme,Type=tp,comment=comment)
-            db.session.add(commen)
-            db.session.commit()
 
 
 def pic():
