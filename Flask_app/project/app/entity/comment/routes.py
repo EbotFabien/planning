@@ -84,7 +84,7 @@ def commen_make():
 @cross_origin(origin=['http://127.0.0.1',"http://195.15.228.250"],headers=['Content- Type','Authorization'])
 @omment.route('/comme/make/', methods=['POST','PUT'])
 def make_com():
-    loc="/work/www/cmd/Flask_app/project/app/static/appointment_photos.xls"
+    loc="/work/www/cmd/Flask_app/project/app/static/appointment_comments.xls"
     wb = xlrd.open_workbook(loc)
     sheet = wb.sheet_by_index(0)
     
