@@ -2,7 +2,7 @@ import os
 
 class Config:
     SECRET_KEY='FABIENCLASSIC'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///cmd4.db'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///cmd5.db'
     MAIL_SERVER ='mail.infomaniak.ch'
     MAIL_PORT = 587
     MAIL_USE_TLS =True

@@ -43,7 +43,9 @@ def commen():
     return jsonify({"document":all_}), 200
 
 @doct.route('/clean/document/', methods=['GET'])
-def commen():
+def commenc():
+    db.create_all()
+    db.session.commit()
     ide=request.args.get('rdv')
     comment=document.query.filter_by(rdv_id=ide).all()
     all_=[]
