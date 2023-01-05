@@ -42,6 +42,35 @@ def commen():
 
     return jsonify({"document":all_}), 200
 
+@doct.route('/clean/document/', methods=['GET'])
+def commen():
+    ide=request.args.get('rdv')
+    comment=document.query.filter_by(rdv_id=ide).all()
+    all_=[]
+    for i in comment:
+        lis=i
+        try:
+            li=lis.index('static',0)
+            li2=lis.index('/',li)
+            url=lis[li2+1:]
+            root=lis[0:li2+1]
+            url=url.replace(" ","_")
+            last=root+url
+            i.route=last
+            db.session.commit()
+
+        except:
+            li=lis.index('documents',0)
+            li2=lis.index('/',li)
+            url=lis[li2+1:]
+            root=lis[0:li2+1]
+            url=url.replace(" ","_")
+            last=root+url
+            i.route=last
+            db.session.commit()
+
+    return jsonify({"document":all_}), 200
+
 @doct.route('/<int:ide>/document/', methods=['POST'])
 def commen_spe(ide):
 
@@ -95,7 +124,7 @@ def make_document():
 def make_doc():
     db.create_all()
     db.session.commit()
-    loc="work/www/cmd/Flask_app/project/app/static/appointment_documents.xls"
+    loc="/work/www/cmd/Flask_app/project/app/static/appointment_documents.xls"
     wb = xlrd.open_workbook(loc)
     sheet = wb.sheet_by_index(0)
     
@@ -129,7 +158,7 @@ def make_doc():
 @cross_origin(origin=['http://127.0.0.1',"http://195.15.228.250"],headers=['Content- Type','Authorization'])
 @doct.route('/make/pic/', methods=['POST','PUT'])
 def make_pic():
-    loc="work/www/cmd/Flask_app/project/app/static/appointment_photos.xls"
+    loc="/work/www/cmd/Flask_app/project/app/static/appointment_photos.xls"
     wb = xlrd.open_workbook(loc)
     sheet = wb.sheet_by_index(0)
     
