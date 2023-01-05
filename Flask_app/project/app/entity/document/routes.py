@@ -93,7 +93,9 @@ def make_document():
 @cross_origin(origin=['http://127.0.0.1',"http://195.15.228.250"],headers=['Content- Type','Authorization'])
 @doct.route('/make/doc/', methods=['POST','PUT'])
 def make_doc():
-    loc=os.path.join(os.path.dirname(os.path.abspath(__file__)), "static","appointment_documents.xls")
+    db.create_all()
+    db.session.commit()
+    loc="work/www/cmd/Flask_app/project/app/static/appointment_documents.xls"
     wb = xlrd.open_workbook(loc)
     sheet = wb.sheet_by_index(0)
     
@@ -101,8 +103,11 @@ def make_doc():
     for i in range(0,20281):
         name=sheet.row_values(i+1)
         inv=name[5][::-1]
+        date=name[7]
         url=inv[0:inv.index('/')]
-        url="/work/fichiers/appointments/documents/" + url[::-1]
+        url=url[::-1]
+        url=url.replace(" ","_")
+        url="/work/fichiers/appointments/documents/" + url
         json={
             'rdv':int(name[1]),
             'type':'Fichier',
@@ -111,42 +116,46 @@ def make_doc():
             'user':int(name[2]),
         }
         user=json['user']
-        check=requests.get("http://195.15.228.250/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
-        #try:
-        if check.json()['id']:
-                rdv=json['rdv']
-                tp=json['type']
-                comme=json['route']
-                comment=json['comment']
-                commen=document(user_id=user,rdv_id=rdv,route=comme,Type=tp,comment=comment)
-                db.session.add(commen)
-                db.session.commit()
-    '''loc="/Users/pro2015/Desktop/pph folder/cmd/Flask_app/project/app/static/appointment_photos.xls"
+        rdv=json['rdv']
+        tp=json['type']
+        comme=json['route']
+        comment=json['comment']
+        commen=document(user_id=user,rdv_id=rdv,route=comme,Type=tp,comment=comment,date=date)
+        db.session.add(commen)
+        db.session.commit()
+    return jsonify({"Fail": "donnee n'exist pas or token n'existe pas"}), 200
+
+@cross_origin(origin=['http://127.0.0.1',"http://195.15.228.250"],headers=['Content- Type','Authorization'])
+@doct.route('/make/pic/', methods=['POST','PUT'])
+def make_pic():
+    loc="work/www/cmd/Flask_app/project/app/static/appointment_photos.xls"
     wb = xlrd.open_workbook(loc)
     sheet = wb.sheet_by_index(0)
     
     sheet.cell_value(0,0)
     for i in range(0,141):
         name=sheet.row_values(i+1)
-        inv=name[5][::-1]
+        inv=name[4][::-1]
+        date=name[6]
         url=inv[0:inv.index('/')]
-        url="/work/fichiers/appointments/photos/" + url[::-1]
+        url=url[::-1]
+        url=url.replace(" ","_")
+        url="/work/fichiers/appointments/documents/" + url
         json={
             'rdv':int(name[1]),
-            'type':'Photos',
+            'type':'Fichier',
             'route':url,
-            'comment':name[4],
+            'comment':name[3],
             'user':int(name[2]),
         }
         user=json['user']
-        check=requests.get("http://195.15.218.172/manager_app/user/"+str(user), headers={"Authorization":request.headers["Authorization"]})
-        if check.json()['id']:
-                rdv=json['rdv']
-                tp=json['type']
-                comme=json['route']
-                comment=json['comment']
-                commen=document(user_id=user,rdv_id=rdv,route=comme,Type=tp,comment=comment)
-                db.session.add(commen)
-                db.session.commit()'''
-    
+        rdv=json['rdv']
+        tp=json['type']
+        comme=json['route']
+        comment=json['comment']
+        commen=document(user_id=user,rdv_id=rdv,route=comme,Type=tp,comment=comment,date=date)
+        db.session.add(commen)
+        db.session.commit()
     return jsonify({"Fail": "donnee n'exist pas or token n'existe pas"}), 200
+
+

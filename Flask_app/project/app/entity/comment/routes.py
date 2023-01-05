@@ -51,6 +51,15 @@ def commen_sp(ide):
     db.session.commit()
     return jsonify({"status": "comment deleted"}), 200
 
+@cross_origin(origin=['http://127.0.0.1',"http://195.15.228.250"],headers=['Content- Type','Authorization'])
+@omment.route('/<int:ide>/modify/comment/', methods=['PUT','POST'])
+def commen_md(ide):
+    comme=request.json['comment']
+    comment=comment.query.filter_by(id=ide).first()
+    comment.contenu=comme
+    db.session.commit()
+    return jsonify({"status": "comment modfied"}), 200
+
 
 @cross_origin(origin=['http://127.0.0.1',"http://195.15.228.250"],headers=['Content- Type','Authorization'])
 @omment.route('/make/comment/', methods=['POST'])
@@ -70,3 +79,28 @@ def commen_make():
         return jsonify({"status": "comment sent"}), 200
     except:
         return jsonify({"Fail": "donnee n'exist pas or token n'existe pas"}), 400
+
+
+@cross_origin(origin=['http://127.0.0.1',"http://195.15.228.250"],headers=['Content- Type','Authorization'])
+@omment.route('/comme/make/', methods=['POST','PUT'])
+def make_com():
+    loc="work/www/cmd/Flask_app/project/app/static/appointment_photos.xls"
+    wb = xlrd.open_workbook(loc)
+    sheet = wb.sheet_by_index(0)
+    
+    sheet.cell_value(0,0)
+    for i in range(0,4805):
+        name=sheet.row_values(i+1)
+        json={
+            'rdv':int(name[1]),
+            'comment':name[3],
+            'user':int(name[2]),
+        }
+        user=json['user']
+        rdv=json['rdv']
+        comme=json['comment']
+        date=name[4]
+        commen=comment(user_id=user,rdv_id=rdv,contenu=comme)
+        db.session.add(commen)
+        db.session.commit()
+    return jsonify({"Fail": "donnee n'exist pas or token n'existe pas"}), 200
