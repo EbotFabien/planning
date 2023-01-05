@@ -47,7 +47,7 @@ def commenc():
     db.create_all()
     db.session.commit()
     ide=request.args.get('rdv')
-    comment=document.query.filter_by(rdv_id=ide).all()
+    comment=document.query.all()
     all_=[]
     for i in comment:
         lis=i
@@ -106,6 +106,8 @@ def make_document():
     #try:
     if check.json()['id']:
             uploaded_file = request.files['fichier']
+            url=str(uploaded_file.filename)
+            name=url.replace(" ","_")
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], uploaded_file.filename)
             comme=str(file_path)
             uploaded_file.save(file_path)
