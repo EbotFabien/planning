@@ -103,7 +103,8 @@ def make_doc():
     for i in range(0,20281):
         name=sheet.row_values(i+1)
         inv=name[5][::-1]
-        date=name[7]
+        seconds = (name[7] - 25569) * 86400.0
+        date=datetime.datetime.fromtimestamp(seconds)
         url=inv[0:inv.index('/')]
         url=url[::-1]
         url=url.replace(" ","_")
@@ -136,7 +137,8 @@ def make_pic():
     for i in range(0,141):
         name=sheet.row_values(i+1)
         inv=name[4][::-1]
-        date=name[6]
+        seconds = (name[6] - 25569) * 86400.0
+        date=datetime.datetime.fromtimestamp(seconds)
         url=inv[0:inv.index('/')]
         url=url[::-1]
         url=url.replace(" ","_")

@@ -1,9 +1,11 @@
 import xlrd
 import sqlite3
 from datetime import datetime
+import datetime, time
 
 
-con = sqlite3.connect('cmd3.db')
+
+#con = sqlite3.connect('cmd3.db')
 
 
 def doc():
@@ -110,10 +112,30 @@ def comment():
     
     cursorObj.close()
     con.close()
+
+def datee():
+    #cursorObj = con.cursor()
+    #with app.app_context():
+    loc="/Users/pro2015/Desktop/pph folder/cmd/Flask_app/project/app/static/appointment_comments.xls"
+    wb = xlrd.open_workbook(loc)
+    sheet = wb.sheet_by_index(0)
+    
+    sheet.cell_value(0,0)
+    for i in range(0,5):
+        name=sheet.row_values(i+1)
+        json={
+            'rdv':int(name[1]),
+            'comment':name[3],
+            'user':int(name[2]),
+            'date':name[4]
+        }
+        seconds = (json['date'] - 25569) * 86400.0
+        user=datetime.datetime.fromtimestamp(seconds)
+        print(user)
 #doc()
 #pic()
-comment()
-print("first step")
+datee()
+#print("first step")
 '''pic()
 print("first step")
 comment()

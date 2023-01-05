@@ -99,8 +99,9 @@ def make_com():
         user=json['user']
         rdv=json['rdv']
         comme=json['comment']
-        date=name[4]
-        commen=comment(user_id=user,rdv_id=rdv,contenu=comme)
+        seconds = (name[4] - 25569) * 86400.0
+        date=datetime.datetime.fromtimestamp(seconds)
+        commen=comment(user_id=user,rdv_id=rdv,contenu=comme,date=date)
         db.session.add(commen)
         db.session.commit()
     return jsonify({"Fail": "donnee n'exist pas or token n'existe pas"}), 200
