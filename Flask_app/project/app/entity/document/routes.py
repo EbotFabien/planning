@@ -140,7 +140,7 @@ def make_doc():
         date=datetime.datetime.fromtimestamp(seconds)
         url=inv[0:inv.index('/')]
         url=url[::-1]
-        url=url.replace(" ","_")
+        #url=url.replace(" ","_")
         url="/work/fichiers/appointments/documents/" + url
         json={
             'rdv':int(name[1]),
@@ -174,7 +174,7 @@ def make_pic():
         date=datetime.datetime.fromtimestamp(seconds)
         url=inv[0:inv.index('/')]
         url=url[::-1]
-        url=url.replace(" ","_")
+        #url=url.replace(" ","_")
         url="/work/fichiers/appointments/documents/" + url
         json={
             'rdv':int(name[1]),
